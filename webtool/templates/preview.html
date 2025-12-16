@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }} | Xmind2TestCase 预览</title>
+    <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.ico') }}" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" media="all" href="{{ url_for('static',filename='css/pure-min.css') }}">
+    <link rel="stylesheet" type="text/css" media="all" href="{{ url_for('static',filename='css/custom.css') }}">
+</head>
+<body>
+<div class="header">
+    <h1>{{ name }} - 预览</h1>
+    <h2>测试模块：{{ suite_count }} / 测试用例：{{ suite | length }}
+        / <a href="{{ url_for("download_zentao_file",filename= name) }}">获取禅道 CSV</a>
+        / <a href="{{ url_for("download_testlink_file",filename= name) }}">获取 TestLink XML</a>
+        / <a href="{{ url_for("index") }}">返回</a></h2>
+</div>
+<table class="pure-table tests-table">
+    <thead>
+    <tr>
+        <th width="5%">#</th>
+        <th width="10%">所属模块</th>
+        <th>用例标题</th>
+        <th width="200px">用例属性</th>
+        <th width="23%">操作步骤</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for test in suite %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ test.suite }}</td>
+            <td {% if test.name|length>100 %}class="long-name" {% endif %}>{{ test.name }}
+                {% if test.name|length>100 %}
+                    <span class="long-name-info">警告：测试名称可能过长：{{ test.name|length }}！</span>
+                {% endif %}
+            </td>
+            <td>
+                <div class="tag-success tooltip">
+                    优先级 {{ test.importance }}
+                    <span class="tooltiptext">优先级 {{ test.importance }} </span>
+                </div>
+                {% if test.preconditions %}
+                    <div class="pure-button tag-info tooltip">前置条件
+                        <p class="tooltiptext">
+                            <b>前置条件：</b> <br>
+                            {{ test.preconditions | replace('\n','<br>') |safe }}
+                        </p>
+                    </div>
+                {% endif %}
+            </td>
+            <td>
+                {% if test.steps %}
+                    <ol>
+                        {% for step in test.steps %}
+                            <li>{{ step.actions }}
+                                {% if step.expectedresults %}
+                                    <ul>
+                                        <li>{{ step.expectedresults }}</li>
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div class="footer" id="page-footer">
+    <a href="{{ url_for('static', filename='guide/index.html') }}" target="_blank">用户指南</a> |
+    <a href="https://github.com/zhuifengshen/xmind2testcase/issues/new" target="_blank">问题反馈</a> |
+    由 <a href="https://github.com/zhuifengshen/xmind2testcase" target="_blank">XMind2TestCase</a> 提供支持
+</div>
+
+<script>
+/**
+ * 函数：removePreviewTargets
+ * 作用：删除预览页指定 DOM 元素（摘要按钮与页脚）
+ * 参数：无
+ * 返回：无
+ */
+(function removePreviewTargets() {
+    try {
+        var summaryBtn = document.getElementById('summary-button');
+        if (summaryBtn && summaryBtn.parentNode) {
+            window.__removed_summary_btn__ = summaryBtn;
+            summaryBtn.parentNode.removeChild(summaryBtn);
+            console.info('[DOM] 已删除摘要按钮');
+        } else {
+            console.info('[DOM] 未找到摘要按钮，跳过删除');
+        }
+
+        var footer = document.getElementById('page-footer');
+        if (footer && footer.parentNode) {
+            window.__removed_page_footer__ = footer;
+            footer.parentNode.removeChild(footer);
+            console.info('[DOM] 已删除页脚');
+        } else {
+            console.info('[DOM] 未找到页脚，跳过删除');
+        }
+    } catch (err) {
+        console.error('[DOM] 删除操作异常:', err);
+    }
+})();
+</script>
+
+</body>
+</html>

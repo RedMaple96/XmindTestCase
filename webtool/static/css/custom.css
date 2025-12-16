@@ -1,0 +1,401 @@
+#file-label {
+    font-size: 1.5em;
+    line-height: 2em;
+    text-decoration: none;
+    display: block;
+}
+
+#file-label:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.footer {
+    color: #666;
+    font-size: 80%;
+    padding: 1em;
+    text-align: center;
+    width: auto;
+
+}
+
+.footer a {
+    color: #666;
+}
+
+.footer-home {
+    color: #fff;
+    font-size: 1em;
+    margin-top: 40px;
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+    font-family: Helvetica, sans-serif;
+    font-weight: 100;
+}
+
+.footer-home a {
+    color: #fff;
+}
+
+.header {
+    /*border-bottom: 1px solid #eee;*/
+    color: #333;
+    margin: 0;
+    padding: 0 2em 0;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2em;
+    font-weight: 300;
+    margin: 0;
+}
+
+.header h2 {
+    color: grey;
+    font-size: 1.3em;
+    font-weight: 300;
+    margin-top: 1em;
+    padding: 0;
+}
+
+.recent-xminds tr:hover td {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.select-xmind {
+    border-bottom: 2px solid #FFF;
+    margin: auto;
+    padding-bottom: 2em;
+    width: 60%;
+
+}
+
+.splash {
+    height: 60%;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    width: 80%;
+    margin-top: 8%;
+}
+
+.splash-container {
+    background: #00b36b;
+    height: 100%;
+    overflow: hidden;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.splash-container h1 {
+    color: #fff;
+    font-size: 3em;
+    font-weight: 600;
+    margin-bottom: 1em;
+    text-align: center;
+    text-shadow: 5px 5px 11px rgba(0, 0, 0, 0.58);
+    text-transform: uppercase;
+}
+
+.splash-head {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    color: #FFF;
+    padding: 1.5em 1.6em;
+}
+
+.splash-head p {
+    color: #FFF;
+    font-size: .9em;
+    letter-spacing: .05em;
+    opacity: 0.9;
+}
+
+.splash-subhead {
+    color: #FFF;
+    letter-spacing: .05em;
+    opacity: 0.9;
+}
+
+.tag-error {
+    background: #ca3c3c;
+}
+
+.tag-info {
+    background: #42b8dd;
+}
+
+.tag-success {
+    background: #1cb841;
+}
+
+.tag-success, .tag-error, .tag-warn, .tag-info {
+    border-radius: 3px;
+    color: #FFF;
+    font-size: .8em;
+    padding: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.tag-warn {
+    background: #df7514;
+}
+
+.tests-table tr:hover td {
+    background-color: #f2f3f4;
+}
+
+.tooltip {
+    display: inline-block;
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    background-color: #000;
+    border-radius: 4px;
+    color: #fff;
+    max-width: 400px;
+    min-width: 60px;
+    padding: 6px;
+    position: absolute;
+    text-align: left;
+    visibility: hidden;
+    white-space: normal;
+    width: max-content;
+    width: -moz-max-content;
+    word-break: normal;
+    word-wrap: break-word;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+a {
+    color: #3d92c9;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    text-decoration: underline;
+}
+
+body {
+    padding: 30px;
+    font-family: Tahoma, Geneva, "Microsoft YaHei", sans-serif;
+}
+
+input[type="file"] {
+    /*display: none;*/
+    opacity: 0;
+}
+
+input[type="submit"] {
+    font-size: 1.2em;
+}
+
+/* 拖拽上传区域样式 */
+.upload-area {
+    position: relative;
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.drop-zone {
+    display: block;
+    border: 2px dashed rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    padding: 30px 20px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.drop-zone:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.drop-zone.drag-over {
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.drop-zone.drag-invalid {
+    border-color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.2);
+}
+
+.upload-text, .drag-text {
+    display: block;
+    color: #fff;
+    font-size: 1.1em;
+    line-height: 1.4;
+    margin: 10px 0;
+}
+
+.upload-status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.upload-status.success {
+    background-color: rgba(28, 184, 65, 0.9);
+    color: #fff;
+}
+
+.upload-status.error {
+    background-color: rgba(202, 60, 60, 0.9);
+    color: #fff;
+}
+
+.upload-status.info {
+    background-color: rgba(66, 184, 221, 0.9);
+    color: #fff;
+}
+
+/* 拖拽时的动画效果 */
+@keyframes dragPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+.drop-zone.drag-over {
+    animation: dragPulse 1s ease-in-out infinite;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .drop-zone {
+        padding: 20px 15px;
+        margin: 15px auto;
+    }
+    
+    .upload-text, .drag-text {
+        font-size: 1em;
+    }
+}
+
+input[type="submit"]:hover {
+    box-shadow: 0 0 6px rgba(35, 173, 255, 1);
+}
+
+ol {
+    margin-bottom: 0;
+    margin-left: -20px;
+    margin-top: 0;
+}
+
+ol ul {
+    margin-left: -30px;
+}
+
+table.recent-xminds {
+    font-size: 0.8em;
+    margin-top: 2em;
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+table.recent-xminds a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+table.recent-xminds td:nth-child(1) {
+    text-align: left;
+}
+
+table.recent-xminds th {
+    background-color: #f2f3f4;
+    text-align: center;
+}
+
+table.tests-table {
+    font-size: .8em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    width: 100%;
+}
+
+table.tests-table tr td {
+    border-bottom: #cbcbcb solid 1px;
+}
+
+table.tests-table tr th {
+    background-color: #444;
+    color: #fff;
+    height: 2em;
+    vertical-align: middle;
+}
+
+table td.long-name {
+    color: red
+}
+
+.long-name-info {
+    background-color: #000;
+    border-radius: 4px;
+    color: #fff;
+    max-width: 400px;
+    min-width: 60px;
+    padding: 6px;
+    position: absolute;
+    text-align: left;
+    visibility: hidden;
+    white-space: normal;
+    width: max-content;
+    width: -moz-max-content;
+    word-break: normal;
+    word-wrap: break-word;
+    z-index: 1;
+}
+
+table td.long-name:hover .long-name-info {
+    visibility: visible;
+}
+
+/*
+ * 统一label尺寸设置
+ * 目标：保证多个使用该类的label在不同屏幕下宽高完全一致
+ * 说明：
+ * - 使用CSS变量统一宽度和纵横比，确保高度随宽度计算而一致
+ * - 使用aspect-ratio保持宽高比例，避免内容导致高度不一致
+ * - 宽度采用容器宽度的100%，并设置最大宽度以保持响应式
+ */
+:root {
+    /* 最大宽度（可按需调整以匹配设计） */
+    --label-max-width: 400px;
+    /* 统一的纵横比（保持原有视觉比例；如需更改请调整该值） */
+    --label-aspect-ratio: 16/9;
+}
+
+/* 赋予两个label完全相同的宽度与高度（通过相同的宽度和纵横比计算） */
+.label-equal {
+    box-sizing: border-box;
+    width: min(100%, var(--label-max-width));
+    /* 通过统一纵横比让高度随宽度一致计算，确保多个元素尺寸匹配 */
+    aspect-ratio: var(--label-aspect-ratio);
+    display: block;
+}
+
+/* 小屏优化：降低最大宽度以避免溢出，仍保持一致尺寸 */
+@media (max-width: 768px) {
+    :root {
+        --label-max-width: 320px;
+    }
+}

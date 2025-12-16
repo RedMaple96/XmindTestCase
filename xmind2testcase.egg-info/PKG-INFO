@@ -1,0 +1,1103 @@
+Metadata-Version: 2.4
+Name: xmind2testcase
+Version: 1.5.2
+Summary: XMind2TestCase基于Python实现，提供了一个高效测试用例设计的解决方案！
+Home-page: https://github.com/zhuifengshen/xmind2testcase
+Author: Devin
+Author-email: 175422668@qq.com
+License: MIT
+Keywords: xmind2testCase, testcase, test, testing, xmind, 思维导图, XMind思维导图
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0, <4
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: xmind
+Requires-Dist: flask
+Requires-Dist: arrow
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# XMind2TestCase
+
+> **XMind2TestCase** - An efficient test case design solution that bridges XMind mind mapping with test management systems!
+
+[![Version](https://img.shields.io/badge/version-1.5.2-blue.svg)](https://github.com/zhuifengshen/xmind2testcase)
+[![Python](https://img.shields.io/badge/python-3.0+-green.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
+
+## 🎯 Project Overview
+
+XMind2TestCase is a Python-based tool that provides an efficient solution for test case design by converting XMind mind mapping files into test case formats compatible with popular test management systems. It combines the flexibility and visual advantages of mind mapping with the structured management capabilities of professional testing tools.
+
+### Key Features
+
+- **Multi-format Support**: Convert XMind files to CSV, XML, and JSON formats
+- **Test Management Integration**: Direct compatibility with TestLink and ZenTao (禅道)
+- **Flexible APIs**: Provide both TestSuite and TestCase level JSON data interfaces
+- **Web Interface**: User-friendly web tool for easy conversion
+- **Command Line**: CLI support for automation and batch processing
+- **Custom Templates**: Standardized test case templates for consistent formatting
+
+### Technology Stack
+
+- **Language**: Python 3.0+
+- **Web Framework**: Flask
+- **Core Dependencies**: 
+  - `xmind` - XMind file parsing
+  - `flask` - Web interface
+  - `arrow` - Date/time handling
+- **Output Formats**: CSV, XML, JSON
+- **Target Systems**: TestLink, ZenTao (禅道)
+
+## 🆕 Latest Updates
+
+### Version 1.5.2
+- Updated test case type mapping for ZenTao compatibility:
+  - 1: Functional Testing (功能测试)
+  - 2: Performance Testing (性能测试) 
+  - 3: Configuration Related (配置相关)
+  - 4: Installation & Deployment (安装部署)
+  - 5: Security Related (安全相关)
+  - 6: API Testing (接口测试)
+  - 7: Others (其他)
+- Support both numeric and text labels for case types
+
+### Version 1.5.1
+- Fixed Chinese character encoding issues in CSV export
+- Resolved empty line problems in CSV output
+- Optimized data columns for "Case Type", "Applicable Phase", and "Priority" based on latest ZenTao versions
+
+## 📋 Table of Contents
+
+- [Background](#background)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [API Reference](#api-reference)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
+- [Changelog](#changelog)
+- [Acknowledgments](#acknowledgments)
+
+## 🎯 Background
+
+In software testing, test case design is one of the most critical and time-consuming activities for testing teams and individual testers.
+
+Traditional test case design methods have several pain points:
+
+1. **Excel-based Design**: While cost-effective, it suffers from version control issues, time-consuming maintenance, cumbersome review processes, and difficult reporting.
+
+2. **Traditional Test Management Tools** (TestLink, TestCenter, Redmine): These provide good execution and management capabilities but lack efficiency in test case creation, limited brainstorming support, and are time-consuming during rapid product iterations.
+
+3. **Custom Test Management Tools**: Good option but requires significant development and maintenance costs, plus technical expertise that may not be available to smaller teams.
+
+4. **Mind Mapping Tools**: Increasingly popular for their visual and brainstorming advantages, especially in agile development teams. However, they present challenges:
+   - Difficult to quantify and manage test cases
+   - Hard to integrate with bug tracking systems
+   - Inconsistent styles across team members leading to communication overhead
+
+**XMind2TestCase** addresses these challenges by combining the best of both worlds:
+
+- **Visual Design**: Leverage XMind's intuitive mind mapping interface for creative test case design
+- **Structured Management**: Convert to standardized formats compatible with professional test management systems
+- **Standardized Templates**: Universal test case templates ensure consistency across teams
+- **Multi-system Support**: Direct integration with TestLink and ZenTao (禅道)
+
+This tool bridges the gap between creative test design and systematic test management, significantly improving testing efficiency while maintaining professional standards.
+
+
+### 二、使用示例
+
+#### 1、Web工具示例
+
+![webtool](https://raw.githubusercontent.com/zhuifengshen/xmind2testcase/master/webtool/static/guide/webtool.png)
+
+#### 2、转换后用例预览
+
+![testcase_preview](https://raw.githubusercontent.com/zhuifengshen/xmind2testcase/master/webtool/static/guide/xmind_to_testcase_preview.png)
+
+#### 3、TestLink导入结果示例
+
+![testlink](https://raw.githubusercontent.com/zhuifengshen/xmind2testcase/master/webtool/static/guide/testlink.png)
+
+#### 4、禅道（ZenTao）导入结果示例
+
+![zentao](https://raw.githubusercontent.com/zhuifengshen/xmind2testcase/master/webtool/static/guide/zentao_import_result.png)
+
+
+## 🚀 Installation
+
+### System Requirements
+
+- **Python**: 3.0 or higher (Python 3.6+ recommended)
+- **Operating System**: Windows, macOS, Linux
+- **Memory**: Minimum 512MB RAM
+- **Disk Space**: 100MB available space
+
+### Installation Methods
+
+#### Method 1: Install from PyPI (Recommended)
+
+```bash
+# Install the latest version
+pip3 install xmind2testcase
+
+# Or install with specific version
+pip3 install xmind2testcase==1.5.2
+```
+
+#### Method 2: Install from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/zhuifengshen/xmind2testcase.git
+
+# Navigate to project directory
+cd xmind2testcase
+
+# Install dependencies
+pip3 install -r requirements.txt
+
+# Install the package
+python3 setup.py install
+```
+
+#### Method 3: Development Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/zhuifengshen/xmind2testcase.git
+
+# Navigate to project directory
+cd xmind2testcase
+
+# Install in development mode
+pip3 install -e .
+```
+
+### Upgrade
+
+```bash
+# Upgrade to latest version
+pip3 install -U xmind2testcase
+
+# Or uninstall and reinstall
+pip3 uninstall xmind2testcase
+pip3 install xmind2testcase
+```
+
+### Verify Installation
+
+```bash
+# Check version
+xmind2testcase --version
+
+# Test basic functionality
+xmind2testcase --help
+```
+
+
+## 📖 Usage
+
+### 1. Command Line Interface (CLI)
+
+The CLI provides quick and efficient conversion of XMind files to various formats.
+
+#### Basic Usage
+```bash
+# Convert to all formats (CSV, XML, JSON)
+xmind2testcase /path/to/testcase.xmind
+
+# Convert to specific format
+xmind2testcase /path/to/testcase.xmind -csv   # CSV only
+xmind2testcase /path/to/testcase.xmind -xml   # XML only  
+xmind2testcase /path/to/testcase.xmind -json  # JSON only
+
+# Convert multiple files
+xmind2testcase /path/to/*.xmind -csv
+```
+
+#### Advanced Options
+```bash
+# Specify output directory
+xmind2testcase /path/to/testcase.xmind -csv --output-dir /custom/output/
+
+# Verbose output for debugging
+xmind2testcase /path/to/testcase.xmind -csv -v
+
+# Show help
+xmind2testcase --help
+```
+
+### 2. Web Interface
+
+Launch the web-based conversion tool for a user-friendly interface.
+
+#### Start Web Server
+```bash
+# Default port (5001)
+xmind2testcase webtool
+
+# Custom port
+xmind2testcase webtool 8000
+
+# Custom host and port
+xmind2testcase webtool --host 0.0.0.0 --port 8080
+```
+
+#### Access Web Interface
+- Open browser and navigate to `http://127.0.0.1:5001`
+- Upload XMind files via drag-and-drop or file selector
+- Choose output format (CSV, XML, JSON)
+- Download converted files instantly
+
+#### Web Interface Features
+- Batch file conversion
+- Real-time preview
+- Format validation
+- Progress indicators
+- Download history
+
+### 3. Python API
+
+Integrate XMind2TestCase into your Python applications.
+
+#### Basic API Usage
+```python
+import json
+from xmind2testcase.utils import (
+    get_xmind_testcase_list,
+    get_xmind_testsuite_list,
+    xmind_testcase_to_json_file,
+    xmind_testsuite_to_json_file
+)
+from xmind2testcase.zentao import xmind_to_zentao_csv_file
+from xmind2testcase.testlink import xmind_to_testlink_xml_file
+
+def convert_xmind_file(xmind_file_path):
+    """Convert XMind file to multiple formats"""
+    
+    # Convert to ZenTao CSV
+    csv_file = xmind_to_zentao_csv_file(xmind_file_path)
+    print(f"ZenTao CSV: {csv_file}")
+    
+    # Convert to TestLink XML
+    xml_file = xmind_to_testlink_xml_file(xmind_file_path)
+    print(f"TestLink XML: {xml_file}")
+    
+    # Convert to TestCase JSON
+    testcase_json = xmind_testcase_to_json_file(xmind_file_path)
+    print(f"TestCase JSON: {testcase_json}")
+    
+    # Convert to TestSuite JSON
+    testsuite_json = xmind_testsuite_to_json_file(xmind_file_path)
+    print(f"TestSuite JSON: {testsuite_json}")
+    
+    return csv_file, xml_file, testcase_json, testsuite_json
+
+# Usage
+xmind_file = 'docs/xmind_testcase_template.xmind'
+csv_file, xml_file, testcase_json, testsuite_json = convert_xmind_file(xmind_file)
+```
+
+## 📊 Examples
+
+### Test Case JSON Structure
+
+```json
+[
+  {
+    "name": "Login Function Test",
+    "version": 1,
+    "summary": "Verify user login functionality",
+    "preconditions": "User account exists",
+    "execution_type": 1,
+    "importance": 1,
+    "estimated_exec_duration": 5,
+    "status": 7,
+    "steps": [
+      {
+        "step_number": 1,
+        "actions": "Navigate to login page",
+        "expectedresults": "Login page displayed",
+        "execution_type": 1
+      },
+      {
+        "step_number": 2,
+        "actions": "Enter valid credentials",
+        "expectedresults": "User logged in successfully",
+        "execution_type": 1
+      }
+    ],
+    "product": "Web Application",
+    "suite": "Authentication Module"
+  }
+]
+```
+
+### Test Suite JSON Structure
+
+```json
+[
+  {
+    "name": "Web Application",
+    "details": "Main test suite for web application",
+    "testcase_list": [],
+    "sub_suites": [
+      {
+        "name": "Authentication Module",
+        "details": "Login and authentication tests",
+        "testcase_list": [
+          {
+            "name": "Login Function Test",
+            "version": 1,
+            "summary": "Verify user login functionality",
+            "preconditions": "User account exists",
+            "execution_type": 1,
+            "importance": 1,
+            "estimated_exec_duration": 5,
+            "status": 7,
+            "steps": [
+              {
+                "step_number": 1,
+                "actions": "Navigate to login page",
+                "expectedresults": "Login page displayed",
+                "execution_type": 1
+              }
+            ]
+          }
+        ],
+        "sub_suites": []
+      }
+    ]
+  }
+]
+```
+
+## 🔧 API Reference
+
+### Core Functions
+
+#### `get_xmind_testcase_list(xmind_file)`
+Extract test cases from XMind file as a list of dictionaries.
+
+**Parameters:**
+- `xmind_file` (str): Path to XMind file
+
+**Returns:**
+- `list`: List of test case dictionaries
+
+**Example:**
+```python
+from xmind2testcase.utils import get_xmind_testcase_list
+
+testcases = get_xmind_testcase_list('test.xmind')
+for case in testcases:
+    print(f"Case: {case['name']}, Priority: {case['importance']}")
+```
+
+#### `get_xmind_testsuite_list(xmind_file)`
+Extract test suites from XMind file as a hierarchical structure.
+
+**Parameters:**
+- `xmind_file` (str): Path to XMind file
+
+**Returns:**
+- `list`: List of test suite dictionaries with nested structure
+
+#### `xmind_to_zentao_csv_file(xmind_file)`
+Convert XMind file to ZenTao-compatible CSV format.
+
+**Parameters:**
+- `xmind_file` (str): Path to XMind file
+
+**Returns:**
+- `str`: Path to generated CSV file
+
+#### `xmind_to_testlink_xml_file(xmind_file)`
+Convert XMind file to TestLink-compatible XML format.
+
+**Parameters:**
+- `xmind_file` (str): Path to XMind file
+
+**Returns:**
+- `str`: Path to generated XML file
+
+### Advanced API Usage
+
+```python
+import json
+from xmind2testcase.utils import get_xmind_testcase_list, get_xmind_testsuite_list
+
+def analyze_test_coverage(xmind_file):
+    """Analyze test coverage from XMind file"""
+    
+    # Get all test cases
+    testcases = get_xmind_testcase_list(xmind_file)
+    
+    # Get test suites
+    testsuites = get_xmind_testsuite_list(xmind_file)
+    
+    # Calculate statistics
+    total_cases = len(testcases)
+    high_priority = sum(1 for case in testcases if case['importance'] == 1)
+    automated_cases = sum(1 for case in testcases if case['execution_type'] == 2)
+    
+    stats = {
+        'total_test_cases': total_cases,
+        'high_priority_cases': high_priority,
+        'automated_cases': automated_cases,
+        'automation_percentage': (automated_cases / total_cases * 100) if total_cases > 0 else 0,
+        'test_suites': len(testsuites)
+    }
+    
+    return stats
+
+# Usage
+stats = analyze_test_coverage('test.xmind')
+print(json.dumps(stats, indent=2))
+```
+
+#### 4、XMind用例文件转为JSON数据
+
+![xmind_testcase_demo](https://raw.githubusercontent.com/zhuifengshen/xmind2testcase/master/webtool/static/guide/xmind_testcase_demo.png)
+
+##### （1）转为TestCase JSON数据
+
+```
+from xmind2testcase.utils import get_xmind_testcase_list
+xmind_file = 'docs/xmind_testcase_demo.xmind'
+testcases = get_xmind_testcase_list(xmind_file)
+print(testcases)
+
+
+Output:
+
+[
+    {                                                # 测试用例
+        "name": "测试用例1",                           # 用例标题
+        "version": 1,                                 # 用例版本
+        "summary": "测试用例1",                        # 用例摘要
+        "preconditions": "前置条件",                   # 前置条件
+        "execution_type": 1,                          # 用例执行类型（1：手动、2：自动）
+        "importance": 1,                              # 优先级（1：高、2：中、3：低）
+        "estimated_exec_duration": 3,                 # 预计执行时间（分钟）
+        "status": 7,                                  # 用例状态（1：草稿、2：待评审、3：评审中、4：重做、5、废弃、6：feature、7：终稿）
+        "steps": [                                    # 测试步骤列表
+            {
+                "step_number": 1,                     # 编号
+                "actions": "测试步骤1",                 # 步骤内容
+                "expectedresults": "预期结果1",         # 预期结果
+                "execution_type": 1                    # 执行类型（1：手动，2：自动）
+            }, 
+            {
+                "step_number": 2, 
+                "actions": "测试步骤2", 
+                "expectedresults": "预期结果2", 
+                "execution_type": 1
+            }
+        ], 
+        "product": "我是产品名",                          # 产品名称
+        "suite": "我是模块名(测试集1)"                     # 测试集（模块名）
+    }, 
+    {
+        "name": "测试用例2", 
+        "version": 1, 
+        "summary": "测试用例2", 
+        "preconditions": "前置条件", 
+        "execution_type": 1, 
+        "importance": 1, 
+        "estimated_exec_duration": 3, 
+        "status": 7, 
+        "steps": [
+            {
+                "step_number": 1, 
+                "actions": "测试步骤1", 
+                "expectedresults": "预期结果1", 
+                "execution_type": 1
+            }, 
+            {
+                "step_number": 2, 
+                "actions": "测试步骤2（预期结果2可以为空）", 
+                "expectedresults": "", 
+                "execution_type": 1
+            }, 
+            {
+                "step_number": 3, 
+                "actions": "测试步骤3", 
+                "expectedresults": "预期结果3", 
+                "execution_type": 1
+            }, 
+            {
+                "step_number": 4, 
+                "actions": "测试步骤4", 
+                "expectedresults": "预期结果4", 
+                "execution_type": 1
+            }
+        ], 
+        "product": "我是产品名", 
+        "suite": "我是模块名(测试集1)"
+    }, 
+    {
+        "name": "测试用例3（测试步骤和预期结果可以都为空）", 
+        "version": 1, 
+        "summary": "测试用例3（测试步骤和预期结果可以都为空）", 
+        "preconditions": "无", 
+        "execution_type": 1, 
+        "importance": 2, 
+        "estimated_exec_duration": 3, 
+        "status": 7, 
+        "steps": [ ], 
+        "product": "我是产品名", 
+        "suite": "我是模块名(测试集1)"
+    }, 
+    {
+        "name": "测试步骤2（优先级默认为中）", 
+        "version": 1, 
+        "summary": "测试步骤2（优先级默认为中）", 
+        "preconditions": "无", 
+        "execution_type": 1, 
+        "importance": 3, 
+        "estimated_exec_duration": 3, 
+        "status": 7, 
+        "steps": [
+            {
+                "step_number": 1, 
+                "actions": "测试步骤1", 
+                "expectedresults": "预期结果1", 
+                "execution_type": 1
+            }, 
+            {
+                "step_number": 2, 
+                "actions": "测试步骤3", 
+                "expectedresults": "", 
+                "execution_type": 1
+            }
+        ], 
+        "product": "我是产品名", 
+        "suite": "我是模块名(测试集2)"
+    }, 
+    {
+        "name": "测试用例3（前置条件默认为空） 无设置优先级，这里加入用例标题", 
+        "version": 1, 
+        "summary": "测试用例3（前置条件默认为空） 无设置优先级，这里加入用例标题", 
+        "preconditions": "无", 
+        "execution_type": 1, 
+        "importance": 2, 
+        "estimated_exec_duration": 3, 
+        "status": 7, 
+        "steps": [ ], 
+        "product": "我是产品名", 
+        "suite": "我是模块名(测试集2)"
+    }
+]
+```
+
+测试用例数据增加执行结果字段：result，示例如下：
+
+![测试用例数据](webtool/static/guide/testcase_json_demo.png)
+
+详情查看[使用指南](webtool/static/guide/index.md)，参考示例：[testcase json](docs/xmind_to_testcase_json.json)
+
+
+##### （2）转为TestSuite JSON数据
+
+```
+from xmind2testcase.utils import get_xmind_testsuite_list
+xmind_file = 'docs/xmind_testcase_demo.xmind'
+testsuites = get_xmind_testsuite_list(xmind_file)
+print(testsuites)
+
+
+Output:
+
+[
+  {                                                 # XMind画布（Sheet)列表
+    "name": "我是产品名",                             # 产品名称
+    "details": null,                                 # 产品摘要
+    "testcase_list": [],                             # 用例列表
+    "sub_suites": [                                  # 用例集列表
+      {
+        "name": "我是模块名(测试集1)",                  # 用例集1名称（模块名）
+        "details": null,                             # 用例集摘要
+        "testcase_list": [                           # 用例列表
+          {                                          # 具体用例
+            "name": "测试用例1",
+            "version": 1,
+            "summary": "测试用例1",
+            "preconditions": "前置条件",
+            "execution_type": 1,
+            "importance": 1,
+            "estimated_exec_duration": 3,
+            "status": 7,
+            "steps": [
+              {
+                "step_number": 1,
+                "actions": "测试步骤1",
+                "expectedresults": "预期结果1",
+                "execution_type": 1
+              },
+              {
+                "step_number": 2,
+                "actions": "测试步骤2",
+                "expectedresults": "预期结果2",
+                "execution_type": 1
+              }
+            ]
+          },
+          {
+            "name": "测试用例2",
+            "version": 1,
+            "summary": "测试用例2",
+            "preconditions": "前置条件",
+            "execution_type": 1,
+            "importance": 1,
+            "estimated_exec_duration": 3,
+            "status": 7,
+            "steps": [
+              {
+                "step_number": 1,
+                "actions": "测试步骤1",
+                "expectedresults": "预期结果1",
+                "execution_type": 1
+              },
+              {
+                "step_number": 2,
+                "actions": "测试步骤2（预期结果2可以为空）",
+                "expectedresults": "",
+                "execution_type": 1
+              },
+              {
+                "step_number": 3,
+                "actions": "测试步骤3",
+                "expectedresults": "预期结果3",
+                "execution_type": 1
+              },
+              {
+                "step_number": 4,
+                "actions": "测试步骤4",
+                "expectedresults": "预期结果4",
+                "execution_type": 1
+              }
+            ]
+          },
+          {
+            "name": "测试用例3（测试步骤和预期结果可以都为空）",
+            "version": 1,
+            "summary": "测试用例3（测试步骤和预期结果可以都为空）",
+            "preconditions": "无",
+            "execution_type": 1,
+            "importance": 2,
+            "estimated_exec_duration": 3,
+            "status": 7,
+            "steps": []
+          }
+        ],
+        "sub_suites": []                            # 用例集中可以包含子用例集（目前只要产品类别下有用例集）
+      },
+      {
+        "name": "我是模块名(测试集2)",                  # 用例集2名称（模块名）
+        "details": "测试集摘要（详情）",
+        "testcase_list": [
+          {
+            "name": "测试步骤2（优先级默认为中）",
+            "version": 1,
+            "summary": "测试步骤2（优先级默认为中）",
+            "preconditions": "无",
+            "execution_type": 1,
+            "importance": 3,
+            "estimated_exec_duration": 3,
+            "status": 7,
+            "steps": [
+              {
+                "step_number": 1,
+                "actions": "测试步骤1",
+                "expectedresults": "预期结果1",
+                "execution_type": 1
+              },
+              {
+                "step_number": 2,
+                "actions": "测试步骤3",
+                "expectedresults": "",
+                "execution_type": 1
+              }
+            ]
+          },
+          {
+            "name": "测试用例3（前置条件默认为空） 无设置优先级，这里加入用例标题",
+            "version": 1,
+            "summary": "测试用例3（前置条件默认为空） 无设置优先级，这里加入用例标题",
+            "preconditions": "无",
+            "execution_type": 1,
+            "importance": 2,
+            "estimated_exec_duration": 3,
+            "status": 7,
+            "steps": []
+          }
+        ],
+        "sub_suites": []
+      }
+    ]
+  }
+]
+```
+
+TestSuite增加执行结果统计字段：statistics，示例如下：
+
+![测试用例数据](webtool/static/guide/testsuite_json_demo.png)
+
+参考示例：[testsuite json](docs/xmind_to_testsuite_json.json)
+
+
+##### （3）XMind文件转换为JSON数据
+
+以上（1）TestCase数据、（2）TestSuite数据的获取，其实是基于**[XMind](https://github.com/zhuifengshen/xmind)**这个工具，对XMind文件进行解析和数据提取，然后转换而来。
+这个工具是在设计XMind2TestCase时，针对XMind单独抽取出来的库，提供了XMind思维导图创建、解析、更新的一系列方法。使用它可以直接将XMind文件转换为JSON数据：
+
+```
+import xmind
+xmind_file = 'docs/xmind_testcase_demo.xmind'
+workbook = xmind.load(xmind_file)
+data = workbook.getData()
+print(data)
+
+
+Output:
+
+[
+  {                                                    # XMind画布(sheet)列表
+    "id": "7hmnj6ahp0lonp4k2hodfok24f",                # 画布ID
+    "title": "画布 1",                                  # 画布名称
+    "topic": {                                         # 中心主题
+      "id": "7c8av5gt8qfbac641lth4g1p67",              # 主题ID
+      "link": null,                                    # 主题上的超链接信息
+      "title": "我是产品名",                             # 主题名称
+      "note": null,                                    # 主题上的备注信息
+      "label": null,                                   # 主题上标签信息
+      "comment": null,                                 # 主题上的批注（评论）信息
+      "markers": [],                                   # 主题上的图标信息
+      "topics": [                                      # 子主题列表
+        {
+          "id": "2rj4ek3nn4sk0lc4pje3gvgv9k",
+          "link": null,
+          "title": "我是模块名(测试集1)",                  # 子主题1
+          "note": null,
+          "label": null,
+          "comment": null,
+          "markers": [],
+          "topics": [                                    # 子主题下的子主题列表
+            {
+              "id": "3hjj43s7rv66uncr1srl3qsboi",
+              "link": null,
+              "title": "测试用例1",
+              "note": "前置条件\n",
+              "label": "手动（执行方式默认为手动）",
+              "comment": null,
+              "markers": [
+                "priority-1"
+              ],
+              "topics": [
+                {
+                  "id": "3djn37j1fdc6081de319slf035",
+                  "link": null,
+                  "title": "测试步骤1",
+                  "note": null,
+                  "label": null,
+                  "comment": null,
+                  "markers": [],
+                  "topics": [
+                    {
+                      "id": "7v0f1152popou38ndaaamt49l5",
+                      "link": null,
+                      "title": "预期结果1",
+                      "note": null,
+                      "label": null,
+                      "comment": null,
+                      "markers": []
+                    }
+                  ]
+                },
+                {
+                  "id": "2srtqqjp818clkk1drm233lank",
+                  "link": null,
+                  "title": "测试步骤2",
+                  "note": null,
+                  "label": null,
+                  "comment": null,
+                  "markers": [],
+                  "topics": [
+                    {
+                      "id": "4jlbo280urmid3qkd01j7h8jnq",
+                      "link": null,
+                      "title": "预期结果2",
+                      "note": null,
+                      "label": null,
+                      "comment": null,
+                      "markers": []
+                    }
+                  ]
+                }
+              ]
+            },
+            ...
+          ]
+        },
+        ...
+      ]
+    }
+  }
+]
+```
+具体参考：[xmind_testcase_demo.json](https://github.com/zhuifengshen/xmind2testcase/blob/master/docs/xmind_testcase_demo.json)
+
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help improve XMind2TestCase:
+
+### 🐛 Reporting Issues
+
+1. **Search existing issues** first to avoid duplicates
+2. **Use issue templates** when available
+3. **Provide detailed information**:
+   - XMind2TestCase version
+   - Python version
+   - Operating system
+   - Steps to reproduce
+   - Expected vs actual behavior
+   - Sample XMind files (if applicable)
+
+### 💡 Suggesting Features
+
+1. **Check existing feature requests** to avoid duplicates
+2. **Describe the use case** clearly
+3. **Explain the benefits** to users
+4. **Consider implementation complexity**
+
+### 🔧 Code Contributions
+
+#### Development Setup
+
+```bash
+# Fork and clone the repository
+git clone https://github.com/your-username/xmind2testcase.git
+cd xmind2testcase
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install development dependencies
+pip install -e .
+pip install -r requirements-dev.txt
+
+# Run tests
+python -m pytest tests/
+```
+
+#### Code Style Guidelines
+
+- **Follow PEP 8** for Python code style
+- **Use meaningful variable names** and comments
+- **Add docstrings** to all functions and classes
+- **Write tests** for new features
+- **Update documentation** for API changes
+
+#### Pull Request Process
+
+1. **Create a feature branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+2. **Make your changes** following the guidelines above
+
+3. **Run tests** to ensure nothing is broken:
+   ```bash
+   python -m pytest tests/
+   ```
+
+4. **Update documentation** if needed
+
+5. **Commit with clear messages**:
+   ```bash
+   git commit -m "Add: brief description of changes"
+   ```
+
+6. **Push to your fork**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+7. **Create a Pull Request** with:
+   - Clear description of changes
+   - Reference to related issues
+   - Screenshots/examples if applicable
+
+### 📋 Contribution Areas
+
+- **Bug fixes**: Resolve existing issues
+- **Feature enhancements**: Add new conversion formats
+- **Performance optimization**: Improve processing speed
+- **Documentation**: Improve guides and examples
+- **Testing**: Add more comprehensive test cases
+- **Internationalization**: Add support for more languages
+
+### 🏆 Recognition
+
+Contributors will be acknowledged in:
+- Project README
+- Release notes
+- Contributors page
+
+
+## 📜 Changelog
+
+### Version 1.5.2
+- Updated test case type mapping for ZenTao compatibility:
+  - 1: Functional Testing (功能测试)
+  - 2: Performance Testing (性能测试) 
+  - 3: Configuration Related (配置相关)
+  - 4: Installation & Deployment (安装部署)
+  - 5: Security Related (安全相关)
+  - 6: API Testing (接口测试)
+  - 7: Others (其他)
+- Support both numeric and text labels for case types
+
+### Version 1.5.1
+- Fixed Chinese character encoding issues in CSV export
+- Resolved empty line problems in CSV output
+- Optimized data columns for "Case Type", "Applicable Phase", and "Priority" based on latest ZenTao versions
+
+### Version 1.5.0
+- Support for setting case types via labels (automatic or manual)
+- Support for Chinese display in exported files
+- Added command line execution guidance
+- Fixed remote server deployment access issues
+- Removed default test case keyword settings
+
+### Version 1.3.0
+- Support for identifying test case execution results in XMind
+- Added case execution result statistics data to TestCase and TestSuite
+- Improved user guide
+
+### Version 1.2.0
+- Added Web tool for case conversion
+- Added user guide
+
+### Version 1.1.0
+- XMind case file conversion to ZenTao case file
+- Added one-click upload to PYPI functionality
+
+### Version 1.0.0
+- XMind case template definition and parsing
+- XMind case conversion to TestLink case file
+
+**Note**: XMind2TestCase is designed for XMind classic series versions and does not currently support XMind Zen versions!
+
+
+## 🙏 Acknowledgments
+
+**XMind2TestCase** was developed based on and extended from the following four open-source projects. We are deeply grateful for their contributions:
+
+- **[XMind](https://github.com/zhuifengshen/xmind)**: A one-stop solution for XMind mind map creation, parsing, and updates (Python implementation)!
+- **[xmind2testlink](https://github.com/tobyqin/xmind2testlink)**: Implemented the XMind universal test case template design concept and provided a web conversion tool!
+- **[TestLink](http://www.testlink.org/)**: Provides a complete test case management process and documentation;
+- **[ZenTao Open Source](https://www.zentao.net/)**: Provides a complete project management process, documentation, and user communication groups;
+
+Benefiting from open source, we will also adhere to open source principles and contribute our efforts to the open source community. We will continue to update and maintain the project regularly based on actual project needs.
+
+Welcome everyone to [use](https://github.com/zhuifengshen/xmind2testcase/blob/master/webtool/static/guide/index.md) and provide [feedback](https://github.com/zhuifengshen/xmind2testcase/issues/new), thank you!
+
+(If you find this project helpful, please consider giving it a _**[star](https://github.com/zhuifengshen/xmind2testcase)**_ )
+
+![QA Zen](http://upload-images.jianshu.io/upload_images/139581-27c6030ba720846f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+### MIT License Summary
+
+- ✅ **Commercial use** allowed
+- ✅ **Modification** allowed  
+- ✅ **Distribution** allowed
+- ✅ **Private use** allowed
+- ❌ **Liability** - authors not liable
+- ❌ **Warranty** - no warranty provided
+
+### Copyright Information
+
+```
+MIT License
+
+Copyright (c) 2022 Alpha https://github.com/yoyoalphax/
+Copyright (c) 2019 Devin https://zhangchuzhao.site
+Copyright (c) 2017 Toby Qin
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### Third-Party Licenses
+
+This project uses the following open-source libraries:
+- **xmind** - MIT License
+- **flask** - BSD License  
+- **arrow** - Apache 2.0 License
+
+## 📞 Support
+
+### 🆘 Getting Help
+
+1. **Documentation**: Check this README and project wiki
+2. **Issues**: Search existing issues on GitHub
+3. **Discussions**: Use GitHub Discussions for questions
+4. **Email**: Contact maintainers at `175422668@qq.com`
+
+### 🌟 Community
+
+- **GitHub**: [github.com/zhuifengshen/xmind2testcase](https://github.com/zhuifengshen/xmind2testcase)
+- **Issues**: [Report bugs or request features](https://github.com/zhuifengshen/xmind2testcase/issues)
+- **Discussions**: [Join community discussions](https://github.com/zhuifengshen/xmind2testcase/discussions)
+
+### 📈 Project Stats
+
+- **Version**: 1.5.2
+- **Python Support**: 3.0+
+- **Downloads**: Available on PyPI
+- **License**: MIT
+- **Maintenance**: Actively maintained
+
+---
+
+**Made with ❤️ by the XMind2TestCase community**

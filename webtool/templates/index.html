@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>XMind2TestCase</title>
+    <link rel="shortcut icon" href="{{ url_for('static',filename='favicon.ico') }}" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" media="all" href="{{ url_for('static',filename='css/pure-min.css') }}">
+    <link rel="stylesheet" type="text/css" media="all" href="{{ url_for('static',filename='css/custom.css') }}">
+</head>
+<body>
+<div class="splash-container">
+    <div class="splash">
+        <h1>
+            Xmind 转换为 TestCase
+        </h1>
+        <div class="splash-head">
+            <div class="select-xmind splash-subhead">
+                <form method="post" enctype="multipart/form-data" id="upload-form">
+                    <div class="upload-area" id="upload-area">
+                        <label id="file-label" for="file" class="drop-zone label-equal">
+                            <span class="upload-text">--> 点击这里选择您的XMind文件（支持拖拽上传） <--</span>
+                            <span class="drag-text" style="display: none;">--> 点击这里选择您的XMind文件（支持拖拽上传） <--</span>
+                            <div class="upload-status" id="upload-status" style="display: none;"></div>
+                        </label>
+                        <input id="file" accept=".xmind" type="file" name="file" required/><br>
+                        <input type="submit" class="pure-button " value="开始转换"/>
+                    </div>
+                </form>
+            </div>
+            {% if records %}
+                <table class="pure-table recent-xminds">
+                    <thead>
+                    <tr>
+                        <th width="60%">名称</th>
+                        <th width="17%">时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for record in records %}
+                        <tr>
+                            <td title="{{ record[1] }}"> {{ record[0] }}</td>
+                            <td>{{ record[2] }}</td>
+                            <td><a href="{{ url_for('uploaded_file',filename=record[1]) }}">XMIND</a> |
+                                <a href="{{ url_for('download_zentao_file',filename=record[1]) }}">CSV</a> |
+                                <a href="{{ url_for('download_testlink_file',filename=record[1]) }}">XML</a> |
+                                <a href="{{ url_for('preview_file',filename=record[1]) }}">预览</a> |
+                                <a href="{{ url_for('delete_file',filename=record[1], record_id=record[4]) }}">删除</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Xmind2TestCase 是一款帮助您将 XMind 文件转换为测试用例文件的工具，您可以将生成的文件导入到 TestLink 或 ZenTao 中。</p>
+            {% endif %}
+        </div>
+        <div class="footer-home" id="home-footer">
+            <a href="{{ url_for('static', filename='guide/index.html') }}" target="_blank">用户指南</a> |
+            <a href="https://github.com/zhuifengshen/xmind2testcase/issues/new" target="_blank">问题反馈</a> |
+            由 <a href="https://github.com/zhuifengshen/xmind2testcase" target="_blank">XMind2TestCase</a> 提供支持
+        </div>
+    </div>
+
+</div>
+
+<script>
+/**
+ * 拖拽上传功能模块
+ * 支持HTML5 Drag and Drop API，提供完整的拖拽上传体验
+ */
+(function() {
+    'use strict';
+    
+    // 获取DOM元素
+    const fileInput = document.getElementById('file');
+    const fileLabel = document.getElementById('file-label');
+    const uploadArea = document.getElementById('upload-area');
+    const uploadForm = document.getElementById('upload-form');
+    const uploadText = fileLabel.querySelector('.upload-text');
+    const dragText = fileLabel.querySelector('.drag-text');
+    const uploadStatus = document.getElementById('upload-status');
+    
+    // 检查浏览器是否支持拖拽
+    const isDragAndDropSupported = (function() {
+        const div = document.createElement('div');
+        return ('draggable' in div) || ('ondragstart' in div && 'ondrop' in div);
+    })();
+    
+    /**
+     * 显示状态消息
+     * @param {string} message - 消息内容
+     * @param {string} type - 消息类型：success, error, info
+     */
+    function showStatus(message, type = 'info') {
+        uploadStatus.textContent = message;
+        uploadStatus.className = `upload-status ${type}`;
+        uploadStatus.style.display = 'block';
+        
+        // 3秒后自动隐藏状态消息
+        setTimeout(() => {
+            uploadStatus.style.display = 'none';
+        }, 3000);
+    }
+    
+    /**
+     * 验证文件类型
+     * @param {File} file - 文件对象
+     * @returns {boolean} - 是否有效
+     */
+    function validateFile(file) {
+        if (!file) return false;
+        
+        const validExtensions = ['.xmind'];
+        const fileName = file.name.toLowerCase();
+        const fileExtension = fileName.substring(fileName.lastIndexOf('.'));
+        
+        return validExtensions.includes(fileExtension);
+    }
+    
+    /**
+     * 处理文件选择
+     * @param {FileList} files - 文件列表
+     */
+    function handleFileSelect(files) {
+        if (!files || files.length === 0) return;
+        
+        const file = files[0];
+        
+        if (!validateFile(file)) {
+            showStatus('请选择有效的XMind文件（.xmind格式）', 'error');
+            return;
+        }
+        
+        // 设置文件到input元素
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+        fileInput.files = dataTransfer.files;
+        
+        // 更新UI显示
+        uploadText.textContent = file.name;
+        dragText.style.display = 'none';
+        uploadText.style.display = 'block';
+        
+        showStatus(`文件 "${file.name}" 已准备就绪`, 'success');
+    }
+    
+    /**
+     * 拖拽事件处理
+     */
+    if (isDragAndDropSupported) {
+        
+        // 阻止默认拖拽行为
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        // 拖拽进入
+        uploadArea.addEventListener('dragenter', function(e) {
+            fileLabel.classList.add('drag-over');
+            dragText.style.display = 'block';
+            uploadText.style.display = 'none';
+        }, false);
+        
+        // 拖拽悬停
+        uploadArea.addEventListener('dragover', function(e) {
+            fileLabel.classList.add('drag-over');
+            
+            // 检查文件类型
+            const items = e.dataTransfer.items;
+            if (items && items.length > 0) {
+                const item = items[0];
+                if (item.kind === 'file') {
+                    const file = item.getAsFile();
+                    if (file && !validateFile(file)) {
+                        fileLabel.classList.add('drag-invalid');
+                        fileLabel.classList.remove('drag-over');
+                    }
+                }
+            }
+        }, false);
+        
+        // 拖拽离开
+        uploadArea.addEventListener('dragleave', function(e) {
+            fileLabel.classList.remove('drag-over', 'drag-invalid');
+            dragText.style.display = 'none';
+            uploadText.style.display = 'block';
+        }, false);
+        
+        // 放置文件
+        uploadArea.addEventListener('drop', function(e) {
+            fileLabel.classList.remove('drag-over', 'drag-invalid');
+            dragText.style.display = 'none';
+            uploadText.style.display = 'block';
+            
+            const files = e.dataTransfer.files;
+            handleFileSelect(files);
+        }, false);
+        
+        console.log('[DragUpload] 拖拽上传功能已初始化');
+    } else {
+        console.log('[DragUpload] 浏览器不支持拖拽，使用传统文件选择');
+        showStatus('您的浏览器不支持拖拽上传，请使用文件选择', 'info');
+    }
+    
+    // 传统文件选择支持
+    fileInput.addEventListener('change', function() {
+        if (this.files && this.files.length > 0) {
+            const file = this.files[0];
+            uploadText.textContent = file.name;
+            showStatus(`文件 "${file.name}" 已选择`, 'info');
+        }
+    });
+    
+    // 表单提交验证
+    uploadForm.addEventListener('submit', function(e) {
+        if (!fileInput.files || fileInput.files.length === 0) {
+            e.preventDefault();
+            showStatus('请先选择XMind文件', 'error');
+            return false;
+        }
+        
+        const file = fileInput.files[0];
+        if (!validateFile(file)) {
+            e.preventDefault();
+            showStatus('请选择有效的XMind文件', 'error');
+            return false;
+        }
+        
+        showStatus('正在上传文件...', 'info');
+    });
+    
+})();
+</script>
+
+<script>
+/**
+ * 函数：removeHomeFooter
+ * 作用：删除首页页脚 DOM 元素
+ * 参数：无
+ * 返回：无
+ */
+(function removeHomeFooter(){
+    try {
+        var footerHome = document.getElementById('home-footer');
+        if (footerHome && footerHome.parentNode) {
+            window.__removed_home_footer__ = footerHome;
+            footerHome.parentNode.removeChild(footerHome);
+            console.info('[DOM] 已删除首页页脚');
+        } else {
+            console.info('[DOM] 未找到首页页脚，跳过删除');
+        }
+    } catch (err) {
+        console.error('[DOM] 删除首页页脚操作异常:', err);
+    }
+})();
+</script>
+
+
+ </body>
+ </html>
