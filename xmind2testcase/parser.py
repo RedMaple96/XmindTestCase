@@ -233,9 +233,12 @@ def parse_a_test_step(step_dict):
 
     expected_topics = step_dict.get('topics', [])
     if expected_topics:  # have expected result
-        expected_topic = expected_topics[0]
-        test_step.expectedresults = expected_topic['title']  # one test step action, one test expected result
-        markers = expected_topic['markers']
+        expected_results = []
+        for expected_topic in expected_topics:
+            expected_results.append(expected_topic['title'])
+        test_step.expectedresults = '\n'.join(expected_results)  # one test step action, multiple test expected results
+        
+        markers = expected_topics[0]['markers']
         test_step.result = get_test_result(markers)
     else:  # only have test step
         markers = step_dict['markers']

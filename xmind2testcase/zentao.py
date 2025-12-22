@@ -31,7 +31,7 @@ def xmind_to_zentao_csv_file(xmind_file):
         # logging.info('The zentao csv file already exists, return it directly: %s', zentao_file)
         # return zentao_file
 
-    with open(zentao_file, 'w', newline='', encoding='gbk') as f: # encoding='utf8'
+    with open(zentao_file, 'w', newline='', encoding='utf-8-sig') as f:
         writer = csv.writer(f)
         writer.writerows(zentao_testcase_rows)
         logging.info('Convert XMind file(%s) to a zentao csv file(%s) successfully!', xmind_file, zentao_file)
@@ -70,9 +70,9 @@ def gen_case_step_and_expected_result(steps):
     case_expected_result = ''
 
     for step_dict in steps:
-        case_step += str(step_dict['step_number']) + '. ' + step_dict['actions'].replace('\n', '').strip() + '\n'
+        case_step += str(step_dict['step_number']) + '. ' + step_dict['actions'].replace('\n', ' ').strip() + '\n'
         case_expected_result += str(step_dict['step_number']) + '. ' + \
-            step_dict['expectedresults'].replace('\n', '').strip() + '\n' \
+            step_dict['expectedresults'].replace('\n', ' ').strip() + '\n' \
             if step_dict.get('expectedresults', '') else ''
 
     return case_step, case_expected_result
