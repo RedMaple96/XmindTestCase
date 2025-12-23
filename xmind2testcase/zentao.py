@@ -31,7 +31,7 @@ def xmind_to_zentao_csv_file(xmind_file):
         # logging.info('The zentao csv file already exists, return it directly: %s', zentao_file)
         # return zentao_file
 
-    with open(zentao_file, 'w', newline='', encoding='utf-8-sig') as f:
+    with open(zentao_file, 'w', newline='', encoding='gb18030') as f:
         writer = csv.writer(f)
         writer.writerows(zentao_testcase_rows)
         logging.info('Convert XMind file(%s) to a zentao csv file(%s) successfully!', xmind_file, zentao_file)
