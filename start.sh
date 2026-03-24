@@ -44,4 +44,4 @@ echo $PID > "$PID_FILE"
 
 echo "服务启动成功，进程ID: $PID"
 echo "日志输出至: webtool.log"
-echo "请访问: https://127.0.0.1:5002"
+echo "请访问: https://127.0.0.1:5172"

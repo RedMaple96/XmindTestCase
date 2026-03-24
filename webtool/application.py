@@ -473,7 +473,7 @@ def app_error(e):
     return str(e)
 
 
-def launch(host=HOST, debug=True, port=5002):
+def launch(host=HOST, debug=True, port=5172):
     init()  # initializing the database
     
     # HTTPS证书路径
@@ -489,4 +489,4 @@ def launch(host=HOST, debug=True, port=5002):
 
 
 if __name__ == '__main__':
-    launch(host=HOST, debug=DEBUG, port=5002)
+    launch(host=HOST, debug=DEBUG, port=5172)
