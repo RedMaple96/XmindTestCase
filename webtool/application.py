@@ -475,9 +475,18 @@ def app_error(e):
 
 def launch(host=HOST, debug=True, port=5002):
     init()  # initializing the database
-    app.run(host=host, debug=debug, port=port)
+    
+    # HTTPS证书路径
+    cert_file = os.path.join(here, 'cert.pem')
+    key_file = os.path.join(here, 'key.pem')
+    
+    if os.path.exists(cert_file) and os.path.exists(key_file):
+        app.logger.info('Starting server with HTTPS...')
+        app.run(host=host, debug=debug, port=port, ssl_context=(cert_file, key_file))
+    else:
+        app.logger.warning('HTTPS certificates not found. Starting server with HTTP...')
+        app.run(host=host, debug=debug, port=port)
 
 
 if __name__ == '__main__':
-    init()  # initializing the database
-    app.run(HOST, debug=DEBUG, port=5002)
+    launch(host=HOST, debug=DEBUG, port=5002)
